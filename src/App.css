@@ -1,0 +1,18 @@
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  
+}
+
+::-webkit-scrollbar-track {
+  background: #050b1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0e1a2b;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1a2a3d;
+}
