@@ -8,7 +8,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.join(__dirname, ".env") });
 
 const app = express();
-app.use(cors());
+app.use(cors({origin: "*", // Permite peticiones desde cualquier origen (común en apps de escritorio)
+  methods: ["GET", "POST"]
+}));
 app.use(express.json());
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
@@ -24,7 +26,7 @@ app.post("/api/resumen", async (req, res) => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        // USAMOS LLAMA 3.3 de 70B (Es el reemplazo potente de Mixtral)
+        // LLAMA 3.3 de 70B (Es el reemplazo potente de Mixtral)
         "model": "llama-3.3-70b-versatile", 
         "messages": [
           {
@@ -56,3 +58,6 @@ app.post("/api/resumen", async (req, res) => {
 app.listen(3001, () => {
   console.log("✅ Backend corriendo en http://localhost:3001");
 });
+
+// En tu servidor Express (backend)
+
